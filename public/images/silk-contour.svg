@@ -1,0 +1,23 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255, 228, 230, 0)" />
+      <stop offset="50%" stop-color="rgba(255, 228, 230, 0.3)" />
+      <stop offset="100%" stop-color="rgba(255, 228, 230, 0)" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Flowing Silk Waves -->
+  <path d="M0 100 C 100 150 200 50 400 100" stroke="url(#fade)" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M0 150 C 150 200 250 100 400 150" stroke="url(#fade)" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M0 200 C 100 250 300 150 400 200" stroke="url(#fade)" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <path d="M0 250 C 200 300 300 200 400 250" stroke="url(#fade)" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M0 300 C 150 350 250 250 400 300" stroke="url(#fade)" stroke-width="1" fill="none" opacity="0.6"/>
+  
+  <!-- Subtle Micro-Grains -->
+  <filter id="noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 0.9  0 0 0 0 0.9  0 0 0 0.1 0"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#noise)" opacity="0.3"/>
+</svg>
