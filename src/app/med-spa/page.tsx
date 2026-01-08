@@ -22,7 +22,14 @@ const fadeInUp = {
 };
 
 export default function MedSpaPage() {
-  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+  const [modalState, setModalState] = useState<{isOpen: boolean, mode: 'audit' | 'offer'}>({
+      isOpen: false,
+      mode: 'audit'
+  });
+
+  const openModal = (mode: 'audit' | 'offer') => {
+      setModalState({ isOpen: true, mode });
+  };
   const { spotsLeft } = useScarcity();
   const heroRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -119,7 +126,7 @@ export default function MedSpaPage() {
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-6">
                         <Button 
-                            onClick={() => document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' })}
+                            onClick={() => openModal('offer')}
                             className="w-full sm:w-auto bg-gradient-to-r from-rose-700 to-rose-600 hover:from-rose-600 hover:to-rose-500 text-white text-base px-8 py-6 h-auto font-medium shadow-[0_0_30px_rgba(225,29,72,0.3)] border border-rose-400/20 rounded-full transition-all hover:scale-105 relative group overflow-hidden"
                         >
                             <span className="relative z-10 flex items-center">
@@ -130,7 +137,7 @@ export default function MedSpaPage() {
                         </Button>
                         
                         <Button 
-                            onClick={() => setIsCalculatorOpen(true)}
+                            onClick={() => openModal('audit')}
                             variant="outline" 
                             className="w-full sm:w-auto border-rose-200/20 bg-rose-500/5 text-rose-100/80 hover:text-white hover:bg-rose-500/10 text-base px-8 py-6 h-auto rounded-full backdrop-blur-sm transition-all"
                         >
@@ -196,9 +203,9 @@ export default function MedSpaPage() {
       </Section>
 
       {/* Calculator Modal */}
-      <Modal isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)}>
+      <Modal isOpen={modalState.isOpen} onClose={() => setModalState({ ...modalState, isOpen: false })}>
            <div className="p-4 md:p-8">
-               <RevenueCalculator />
+               <RevenueCalculator mode={modalState.mode} />
            </div>
       </Modal>
 
@@ -275,7 +282,7 @@ export default function MedSpaPage() {
       <Section id="offer" className="py-32 bg-[#0F0F10] border-t border-white/5 relative overflow-hidden">
          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-rose-500/5 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="max-w-5xl mx-auto relative z-10">
-             <OfferStack onClaim={() => setIsCalculatorOpen(true)} />
+             <OfferStack onClaim={() => openModal('offer')} />
         </div>
       </Section>
     </main>

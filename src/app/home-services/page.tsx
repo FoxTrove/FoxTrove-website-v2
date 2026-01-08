@@ -19,7 +19,14 @@ const fadeInUp = {
 
 export default function HomeServicesPage() {
     const [isPlaying, setIsPlaying] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalState, setModalState] = useState<{isOpen: boolean, mode: 'report' | 'offer'}>({
+        isOpen: false, 
+        mode: 'report'
+    });
+
+    const openModal = (mode: 'report' | 'offer') => {
+        setModalState({ isOpen: true, mode });
+    };
     
     // Dynamic Scarcity Logic
     const [scarcity, setScarcity] = useState({
@@ -263,7 +270,7 @@ export default function HomeServicesPage() {
                </p>
                
                <Button 
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => openModal('report')}
                 className="bg-white text-black hover:bg-gray-100 text-xl px-16 py-10 h-auto font-bold rounded-full shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-105 transition-transform hover:shadow-[0_0_60px_rgba(255,255,255,0.3)]"
                >
                    Run Free Revenue Assessment
@@ -363,8 +370,8 @@ export default function HomeServicesPage() {
       <ComparisonTable />
       
       {/* Modal Injection */}
-      <LeadGenModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <StickyMobileCTA onOpen={() => setIsModalOpen(true)} />
+      <LeadGenModal isOpen={modalState.isOpen} onClose={() => setModalState({ ...modalState, isOpen: false })} mode={modalState.mode} />
+      <StickyMobileCTA onOpen={() => openModal('report')} />
 
       {/* 4. THE GRAND SLAM OFFER STACK */}
       <Section id="offer" className="py-32 bg-[#0B1120] border-t border-white/5">
@@ -462,7 +469,7 @@ export default function HomeServicesPage() {
                      </div>
                  </div>
 
-                 <Button onClick={() => setIsModalOpen(true)} size="lg" className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold text-xl px-16 py-8 h-auto uppercase shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all rounded-xl relative overflow-hidden group">
+                 <Button onClick={() => openModal('offer')} size="lg" className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold text-xl px-16 py-8 h-auto uppercase shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all rounded-xl relative overflow-hidden group">
                      <span className="relative z-10">Claim Offer</span>
                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                  </Button>

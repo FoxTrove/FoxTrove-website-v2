@@ -9,7 +9,11 @@ import { Slider } from '@/components/ui/slider';
 import { Calculator, ArrowRight, DollarSign, RefreshCcw, Lock, ChevronLeft, ChevronRight, Check, X, Loader2, ScanSearch, FileText } from 'lucide-react';
 import { submitLead } from '@/app/actions/submitLead';
 
-export function RevenueCalculator() {
+interface RevenueCalculatorProps {
+  mode?: 'audit' | 'offer'; // audit = default flow, offer = purchase flow
+}
+
+export function RevenueCalculator({ mode = 'audit' }: RevenueCalculatorProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [analysisStep, setAnalysisStep] = useState(0); // 0: None, 1: Processing, 2: Ready
   const [loading, setLoading] = useState(false);
@@ -224,34 +228,33 @@ export function RevenueCalculator() {
   const startAnalysis = () => {
     setAnalysisStep(1);
   };
+    const handleAnalysisComplete = async () => {
+        setLoading(true);
+        
+        const result = await submitLead({
+            name: formData.name || 'Med Spa Inquiry',
+            email: formData.email,
+            vertical: 'med-spa',
+            source: mode === 'offer' ? 'RevenueCalculator_Offer' : 'RevenueCalculator_Audit',
+            metadata: {
+                appointments: formData.appointments,
+                avgValue: formData.avgValue,
+                noShowRate: formData.noShowRate,
+                rebookingRate: formData.rebookingRate,
+                hasAutomatedFollowup: formData.hasAutomatedFollowup,
+                hasAfterHoursResponse: formData.hasAfterHoursResponse,
+                pms: formData.pms,
+                goal: formData.goal,
+                leakage: totalLeakage,
+                recovery: recoveryPotential,
+                intent: mode
+            }
+        });
+        
+        setLoading(false);
+        setIsComplete(true);
+    };
   
-  const handleAnalysisComplete = async () => {
-      // Auto-submit after analysis
-      setLoading(true);
-      
-      const result = await submitLead({
-          name: formData.name || 'Med Spa Inquiry',
-          email: formData.email,
-          vertical: 'med-spa',
-          source: 'RevenueCalculator',
-          metadata: {
-              appointments: formData.appointments,
-              avgValue: formData.avgValue,
-              noShowRate: formData.noShowRate,
-              rebookingRate: formData.rebookingRate,
-              hasAutomatedFollowup: formData.hasAutomatedFollowup,
-              hasAfterHoursResponse: formData.hasAfterHoursResponse,
-              pms: formData.pms,
-              goal: formData.goal,
-              leakage: totalLeakage,
-              recovery: recoveryPotential
-          }
-      });
-      
-      setLoading(false);
-      setIsComplete(true);
-  };
-
   const handleBack = () => {
       if (currentQuestion > 0) {
           setCurrentQuestion(prev => prev - 1);
@@ -282,10 +285,21 @@ export function RevenueCalculator() {
                    <div className="flex items-start gap-4">
                       <RefreshCcw className="w-8 h-8 text-rose-500 shrink-0 mt-1" />
                       <div>
-                          <h4 className="text-lg font-bold text-rose-100 mb-1">Recovery Potential: ${recoveryPotential.toLocaleString()}/yr</h4>
-                          <p className="text-rose-200/70 text-sm">
-                              By implementing our AI Rebooking & No-Show Prevention system, a conservative estimate shows you can recover <strong>${recoveryPotential.toLocaleString()}</strong> in profit annually.
-                          </p>
+                          {mode === 'offer' ? (
+                              <>
+                                  <h4 className="text-lg font-bold text-rose-100 mb-1">Founder's Rate Eligibility: CONFIRMED</h4>
+                                  <p className="text-rose-200/70 text-sm">
+                                      Based on your inputs, your practice is an ideal candidate. You can lock in the $497/mo rate (First Month Free) today.
+                                  </p>
+                              </>
+                          ) : (
+                              <>
+                                  <h4 className="text-lg font-bold text-rose-100 mb-1">Recovery Potential: ${recoveryPotential.toLocaleString()}/yr</h4>
+                                  <p className="text-rose-200/70 text-sm">
+                                      By implementing our AI Rebooking & No-Show Prevention system, a conservative estimate shows you can recover <strong>${recoveryPotential.toLocaleString()}</strong> in profit annually.
+                                  </p>
+                              </>
+                          )}
                       </div>
                    </div>
               </div>
@@ -295,7 +309,7 @@ export function RevenueCalculator() {
                       onClick={() => window.location.href = 'https://buy.stripe.com/test_6oU6oJ5Ev9KgcMi9Lj0Ba04'}
                       className="w-full bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white text-xl py-8 h-auto rounded-full shadow-[0_0_30px_rgba(225,29,72,0.4)] animate-pulse"
                   >
-                      Claim Your Spot Now
+                      {mode === 'offer' ? 'Activate My Free Month' : 'Claim Your Spot Now'}
                   </Button>
                   <p className="text-xs text-gray-500 text-center">
                       Secure checkout • 30-Day Risk-Free Trial
@@ -325,8 +339,14 @@ export function RevenueCalculator() {
                       <div className="w-20 h-20 bg-rose-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-rose-500/20">
                            <Calculator className="w-10 h-10 text-rose-500" />
                       </div>
-                      <h3 className="text-3xl font-serif text-white mb-2">Revenue Recovery Audit</h3>
-                      <p className="text-gray-400">Discover how much revenue your practice is leaking annually.</p>
+                      <h3 className="text-3xl font-serif text-white mb-2">
+                          {mode === 'offer' ? 'Availability Check & Setup' : 'Revenue Recovery Audit'}
+                      </h3>
+                      <p className="text-gray-400">
+                          {mode === 'offer' 
+                              ? 'Let\'s confirm your eligibility for the Founder\'s Rate.' 
+                              : 'Discover how much revenue your practice is leaking annually.'}
+                      </p>
                  </div>
 
                  <form onSubmit={handleContactSubmit} className="space-y-4 text-left">
@@ -352,7 +372,7 @@ export function RevenueCalculator() {
                          />
                      </div>
                      <Button type="submit" className="w-full bg-rose-600 hover:bg-rose-500 text-lg py-6 mt-4">
-                         Start Free Audit <ArrowRight className="w-4 h-4 ml-2" />
+                         {mode === 'offer' ? 'Check Eligibility' : 'Start Free Audit'} <ArrowRight className="w-4 h-4 ml-2" />
                      </Button>
                  </form>
              </motion.div>

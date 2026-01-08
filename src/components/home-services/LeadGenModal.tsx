@@ -30,9 +30,10 @@ interface LeadGenModalProps {
     isOpen: boolean;
     onClose: () => void;
     vertical?: string;
+    mode?: 'report' | 'offer';
 }
 
-export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: LeadGenModalProps) {
+export function LeadGenModal({ isOpen, onClose, vertical = 'home-services', mode = 'report' }: LeadGenModalProps) {
     const [step, setStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [result, setResult] = useState<number | null>(null);
@@ -130,60 +131,27 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: Le
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
             <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={onClose}
-                className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-            />
-            
-            <motion.div 
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-full max-w-lg bg-[#0F172A] border border-blue-500/30 rounded-2xl shadow-2xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-[#111] border border-white/10 w-full max-w-lg rounded-2xl p-6 md:p-8 relative overflow-hidden shadow-2xl"
             >
+
+                <Button variant="ghost" className="absolute top-4 right-4 text-gray-500 hover:text-white" onClick={onClose}>
+                    <X className="w-5 h-5"/>
+                </Button>
+
                 {/* Progress Bar */}
-                <div className="h-1 bg-gray-800 w-full">
+                <div className="absolute top-0 left-0 w-full h-1 bg-white/5">
                     <motion.div 
-                        className="h-full bg-blue-500"
+                        className="h-full bg-blue-600"
                         initial={{ width: 0 }}
-                        animate={{ width: `${((step) / totalSteps) * 100}%` }}
+                        animate={{ width: `${(step / totalSteps) * 100}%` }}
                     />
                 </div>
 
-                <div className="p-8">
-                    <button 
-                        onClick={onClose}
-                        className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
-                    >
-                        <X className="w-5 h-5" />
-                    </button>
-
-                    <AnimatePresence mode="wait">
-                        {step === 0 && (
-                            <motion.div 
-                                key="step0"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                className="text-center py-8"
-                            >
-                                <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                    <DollarSign className="w-8 h-8 text-blue-400" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-white mb-4">Missed Call Audit</h3>
-                                <p className="text-gray-400 mb-8">
-                                    Answer 5 quick questions to see exactly how much revenue your voicemail is costing you annually.
-                                </p>
-                                <Button onClick={handleNext} className="w-full bg-blue-600 hover:bg-blue-500 text-lg py-6">
-                                    Start Free Audit <ArrowRight className="w-4 h-4 ml-2" />
-                                </Button>
-                            </motion.div>
-                        )}
-
+                <AnimatePresence mode="wait">
                         {step === 1 && (
                             <motion.div 
                                 key="step1"
@@ -193,8 +161,14 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: Le
                                 className="space-y-6"
                             >
                                 <div className="text-center mb-6">
-                                    <h3 className="text-xl font-bold text-white mb-2">Let's get started</h3>
-                                    <p className="text-gray-400 text-sm">We'll prepare a custom report for you.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">
+                                        {mode === 'offer' ? 'Secure Your Founder\'s Rate' : 'Let\'s get started'}
+                                    </h3>
+                                    <p className="text-gray-400 text-sm">
+                                        {mode === 'offer' 
+                                            ? 'We need a few details to verify your eligibility and customize your setup.' 
+                                            : 'We\'ll prepare a custom report for you.'}
+                                    </p>
                                 </div>
 
                                 <div className="space-y-4">
@@ -226,7 +200,7 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: Le
                                         disabled={!data.name || !data.email}
                                         className="w-full bg-blue-600 hover:bg-blue-500"
                                     >
-                                        Next <ChevronRight className="w-4 h-4 ml-1"/>
+                                        {mode === 'offer' ? 'Check Availability' : 'Next'} <ChevronRight className="w-4 h-4 ml-1"/>
                                     </Button>
                                 </div>
                                 <div className="flex justify-start pt-2">
@@ -342,7 +316,9 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: Le
                                 exit={{ opacity: 0, x: -20 }}
                                 className="space-y-8"
                             >
-                                <h3 className="text-xl font-bold text-white">Let's crunch the numbers.</h3>
+                                <h3 className="text-xl font-bold text-white">
+                                    {mode === 'offer' ? 'One last thing...' : 'Let\'s crunch the numbers.'}
+                                </h3>
                                 
                                 <div className="space-y-4">
                                     <div className="flex justify-between">
@@ -382,7 +358,7 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: Le
                                 <div className="flex justify-between pt-4">
                                     <Button variant="ghost" onClick={handleBack}>Back</Button>
                                     <Button onClick={runSubmission} className="bg-blue-600 hover:bg-blue-500">
-                                        {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin"/> : "Generate Report"}
+                                        {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin"/> : (mode === 'offer' ? 'Confirm Eligibility' : 'Generate Report')}
                                     </Button>
                                 </div>
                             </motion.div>
@@ -410,24 +386,41 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: Le
                                  <h3 className="text-green-500 font-bold tracking-wider text-xl mb-2 animate-pulse">CONGRATULATIONS!</h3>
                                  <h4 className="text-white text-lg mb-6">We have 3 spots available for {data.industry} in your area.</h4>
 
-                                 <h3 className="text-gray-400 uppercase tracking-widest text-sm font-semibold mb-4">Potential Revenue Lost</h3>
-                                 <div className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400 mb-6 font-mono">
-                                     ${result?.toLocaleString()}
-                                     <span className="text-xl text-gray-500 block mt-2 font-sans font-normal">per year</span>
-                                 </div>
+                                 {mode === 'report' && (
+                                     <>
+                                        <h3 className="text-gray-400 uppercase tracking-widest text-sm font-semibold mb-4">Potential Revenue Lost</h3>
+                                        <div className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400 mb-6 font-mono">
+                                            ${result?.toLocaleString()}
+                                            <span className="text-xl text-gray-500 block mt-2 font-sans font-normal">per year</span>
+                                        </div>
+                                     </>
+                                 )}
+
+                                 {mode === 'offer' && (
+                                     <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-6 mb-8 text-left">
+                                         <h4 className="text-green-400 font-bold mb-2 flex items-center gap-2">
+                                             <Check className="w-5 h-5" /> Account Reserved for {data.email}
+                                         </h4>
+                                         <p className="text-gray-300 text-sm">
+                                             Your 30-Day Free Trial is ready to be activated. Estimated revenue recovery: <span className="text-white font-bold">${result?.toLocaleString()}/yr</span>
+                                         </p>
+                                     </div>
+                                 )}
                                  
-                                 <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-6 mb-8 text-left">
-                                     <h4 className="text-blue-400 font-bold mb-2 flex items-center gap-2">
-                                         <Check className="w-5 h-5" /> Report Sent to {data.email}
-                                     </h4>
-                                     <p className="text-gray-300 text-sm">
-                                         We've broken down exactly how FoxTrove can recapture this revenue.
-                                     </p>
-                                 </div>
+                                 {mode === 'report' && (
+                                    <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-6 mb-8 text-left">
+                                        <h4 className="text-blue-400 font-bold mb-2 flex items-center gap-2">
+                                            <Check className="w-5 h-5" /> Report Sent to {data.email}
+                                        </h4>
+                                        <p className="text-gray-300 text-sm">
+                                            We've broken down exactly how FoxTrove can recapture this revenue.
+                                        </p>
+                                    </div>
+                                 )}
 
                                  <div className="space-y-4">
                                     <Button size="lg" className="w-full bg-green-600 hover:bg-green-500 font-bold text-lg animate-pulse" onClick={() => window.location.href = 'https://buy.stripe.com/test_00wdRb1of09GaEacXv0Ba03'}>
-                                        Claim Your Spot Now
+                                        {mode === 'offer' ? 'Complete Setup & Pay' : 'Claim Your Spot Now'}
                                     </Button>
                                     <p className="text-xs text-gray-400 max-w-sm mx-auto">
                                         By clicking above, you'll be taken to our secure checkout to finalize your 30-day free trial setup.
@@ -436,7 +429,7 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: Le
                             </motion.div>
                         )}
                     </AnimatePresence>
-                </div>
+
             </motion.div>
         </div>
     );
