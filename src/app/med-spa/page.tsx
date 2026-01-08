@@ -153,7 +153,7 @@ export default function MedSpaPage() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
                             </span>
-                            Only {spotsLeft} Founder's Rate spots left
+                            Only {spotsLeft} Founder&apos;s Rate spots left
                         </div>
                          <p className="text-sm text-gray-500 font-medium tracking-wide">
                              <span className="text-rose-400">Guarantee:</span> $10k Recovered in 60 Days.
@@ -223,8 +223,8 @@ export default function MedSpaPage() {
 
         <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
              <div className="text-center mb-16">
-                 <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">The "Silent" Revenue Leaks</h2>
-                 <p className="text-gray-400 text-lg max-w-2xl mx-auto">You don't have a traffic problem. You have a bucket problem.</p>
+                 <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">The &quot;Silent&quot; Revenue Leaks</h2>
+                 <p className="text-gray-400 text-lg max-w-2xl mx-auto">You don&apos;t have a traffic problem. You have a bucket problem.</p>
              </div>
 
              <div className="grid md:grid-cols-3 gap-8">
@@ -242,7 +242,7 @@ export default function MedSpaPage() {
                      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <CalendarCheck className="w-10 h-10 text-rose-500 mb-6 group-hover:drop-shadow-[0_0_15px_rgba(244,63,94,0.4)] transition-all" />
                     <h3 className="text-xl font-bold text-white mb-3">2. The No-Show Drain</h3>
-                    <p className="text-gray-400 text-sm mb-4">Average cancellation rate is 22%. That's 1 in 5 slots wasted. Manual reminders don't work anymore.</p>
+                    <p className="text-gray-400 text-sm mb-4">Average cancellation rate is 22%. That&apos;s 1 in 5 slots wasted. Manual reminders don&apos;t work anymore.</p>
                     <div className="bg-rose-950/30 border border-rose-500/20 text-rose-300 text-xs px-3 py-1 rounded inline-block shadow-[0_0_10px_rgba(244,63,94,0.1)]">Loss: $308,880/yr</div>
                 </div>
 
@@ -262,7 +262,7 @@ export default function MedSpaPage() {
       <Section className="py-24 bg-[#0a0a0a] border-t border-white/5">
         <div className="max-w-4xl mx-auto">
              <div className="text-center mb-16">
-                 <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">The Smartest Investment You'll Make</h2>
+                 <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">The Smartest Investment You&apos;ll Make</h2>
                  <p className="text-gray-400 text-lg max-w-2xl mx-auto">Stop lighting money on fire with inefficient systems.</p>
              </div>
              <ComparisonTable />

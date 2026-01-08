@@ -20,7 +20,7 @@ export default function AboutPage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400">An Adaptation Layer.</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                We believe that mainly buying "AI tools" is a trap. The true leverage comes from embedding a partner who molds the technology around your specific business reality.
+                We believe that mainly buying &quot;AI tools&quot; is a trap. The true leverage comes from embedding a partner who molds the technology around your specific business reality.
             </p>
          </div>
       </Section>
@@ -30,19 +30,19 @@ export default function AboutPage() {
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center px-6">
               <div>
                   <div className="text-[#D4AF37] font-mono text-xs uppercase tracking-widest mb-4">The Reality</div>
-                  <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">The "Tool" Trap</h2>
+                  <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">The &quot;Tool&quot; Trap</h2>
                   <p className="text-gray-400 leading-relaxed mb-6">
-                      Most businesses are now "in the age of AI", but almost none are actually getting value from it. 
-                      Leaders feel the pressure to "do something," so they buy a chatbot or sign up for a pilot.
+                      Most businesses are now &quot;in the age of AI&quot;, but almost none are actually getting value from it. 
+                      Leaders feel the pressure to &quot;do something,&quot; so they buy a chatbot or sign up for a pilot.
                   </p>
                   <p className="text-gray-400 leading-relaxed mb-8">
                        The result? <strong>95% of these initiatives fail.</strong> They fail because they start with a tool and go hunting for a problem. 
-                       They leave the burden of "figuring it out" on your already-overwhelmed team.
+                       They leave the burden of &quot;figuring it out&quot; on your already-overwhelmed team.
                   </p>
                   
                   <div className="p-6 bg-red-500/5 border-l-2 border-red-500/50">
                       <p className="text-red-200 italic font-medium">
-                          "The core issue is not access to tools—it is the lack of a partner who can translate AI into your specific context."
+                          &quot;The core issue is not access to tools—it is the lack of a partner who can translate AI into your specific context.&quot;
                       </p>
                   </div>
               </div>
@@ -70,7 +70,7 @@ export default function AboutPage() {
       <Section className="py-32 bg-[#0B1120]">
           <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">The Aggregation Layer</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">We don't ask you to adapt to us. We adapt the future to you.</p>
+              <p className="text-gray-400 max-w-2xl mx-auto">We don&apos;t ask you to adapt to us. We adapt the future to you.</p>
           </div>
 
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
@@ -81,7 +81,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-xl font-bold text-white mb-4">Deep Context</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                      We embed as a partner inside your business. We don't just "install software." We audit your goals, constraints, and bottlenecks to uncover the problems AI can truly impact.
+                      We embed as a partner inside your business. We don&apos;t just &quot;install software.&quot; We audit your goals, constraints, and bottlenecks to uncover the problems AI can truly impact.
                   </p>
               </div>
 

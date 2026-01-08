@@ -20,15 +20,15 @@ export function GuaranteeSection() {
                         <ShieldCheck className="w-12 h-12 text-rose-400 relative z-10" />
                     </div>
 
-                    <h2 className="text-3xl md:text-5xl font-serif text-white mb-6 drop-shadow-lg">The "Grand Slam" Guarantee</h2>
+                    <h2 className="text-3xl md:text-5xl font-serif text-white mb-6 drop-shadow-lg">The &quot;Grand Slam&quot; Guarantee</h2>
                     <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                        We don't want your money unless we make you money. It's that simple. 
+                        We don&apos;t want your money unless we make you money. It&apos;s that simple. 
                         We represent the <span className="text-rose-200 font-medium border-b border-rose-500/30">only risk-free investment</span> you will make this year.
                     </p>
 
                     <div className="bg-[#0a0a0a]/50 rounded-2xl p-8 text-left max-w-2xl mx-auto border border-white/5 backdrop-blur-sm">
                         <h3 className="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4 flex items-center gap-2">
-                            <span className="text-rose-400">///</span> Our Promise To You:
+                            <span className="text-rose-400">{'///'}</span> Our Promise To You:
                         </h3>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3 group">
@@ -57,7 +57,7 @@ export function GuaranteeSection() {
                              <li className="flex items-start gap-3 group">
                                 <Check className="w-6 h-6 text-rose-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                                 <div>
-                                    <span className="text-white font-medium group-hover:text-rose-100 transition-colors">The "Work For Free" Clause</span>
+                                    <span className="text-white font-medium group-hover:text-rose-100 transition-colors">The &quot;Work For Free&quot; Clause</span>
                                     <p className="text-sm text-gray-500">
                                         We will continue working for free until you hit the $10,000 goal. We stay comfortably in the boat with you.
                                     </p>

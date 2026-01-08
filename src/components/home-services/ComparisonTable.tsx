@@ -23,11 +23,11 @@ export function ComparisonTable() {
                             <div className="text-gray-500 font-semibold uppercase tracking-wider text-xs flex items-end pb-2">Features</div>
                             <div className="text-center">
                                 <span className="text-gray-400 font-bold block mb-1">Standard Voicemail</span>
-                                <span className="text-xs text-gray-500">The "Free" Option</span>
+                                <span className="text-xs text-gray-500">The &quot;Free&quot; Option</span>
                             </div>
                             <div className="text-center">
                                 <span className="text-gray-400 font-bold block mb-1">Answering Service</span>
-                                <span className="text-xs text-gray-500">The "Human" Option</span>
+                                <span className="text-xs text-gray-500">The &quot;Human&quot; Option</span>
                             </div>
                             <div className="text-center relative">
                                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider whitespace-nowrap shadow-lg">

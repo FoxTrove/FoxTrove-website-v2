@@ -317,7 +317,7 @@ export default function HomeServicesPage() {
                      >
                         <h3 className="text-4xl font-bold text-white mb-2">100%</h3>
                         <p className="text-sm text-gray-400 leading-tight">
-                             Instant response rate. No more "I'll call you back" voicemail tags.
+                            Instant response rate. No more &quot;I&apos;ll call you back&quot; voicemail tags.
                         </p>
                      </motion.div>
 
@@ -380,7 +380,7 @@ export default function HomeServicesPage() {
                 <div>
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">Stop Paying Answering Services To <span className="text-blue-500">Take Messages.</span></h2>
                     <p className="text-gray-400 text-lg mb-8">
-                        Traditional answering services are passive. They take notes and email you a "lead" to chase later. By then, the homeowner has already called the next guy on Google.
+                        Traditional answering services are passive. They take notes and email you a &quot;lead&quot; to chase later. By then, the homeowner has already called the next guy on Google.
                         <br/><br/>
                         FoxTrove AI is an <strong>Action Engine</strong>. It connects directly with your existing CRM and calendar to complete the job, 100% autonomously.
                     </p>
@@ -434,19 +434,19 @@ export default function HomeServicesPage() {
                              </div>
                              <ul className="space-y-2 text-sm text-gray-300">
                                  <li className="flex gap-2">
-                                     <span className="text-blue-500">"</span>
+                                     <span className="text-blue-500">&quot;</span>
                                      Can you book an appointment for next Tuesday?
-                                     <span className="text-blue-500">"</span>
+                                     <span className="text-blue-500">&quot;</span>
                                  </li>
                                  <li className="flex gap-2">
-                                     <span className="text-blue-500">"</span>
+                                     <span className="text-blue-500">&quot;</span>
                                      What is your hourly rate for plumbing?
-                                     <span className="text-blue-500">"</span>
+                                     <span className="text-blue-500">&quot;</span>
                                  </li>
                                  <li className="flex gap-2">
-                                     <span className="text-blue-500">"</span>
+                                     <span className="text-blue-500">&quot;</span>
                                      I have a pipe bursting in my basement!
-                                     <span className="text-blue-500">"</span>
+                                     <span className="text-blue-500">&quot;</span>
                                  </li>
                              </ul>
                          </div>
@@ -460,7 +460,7 @@ export default function HomeServicesPage() {
                                         {msg.role === 'user' ? <span className="text-xs font-bold">C</span> : <Phone className="w-4 h-4 text-white" />}
                                     </div>
                                     <div className={`p-4 text-sm ${msg.role === 'user' ? 'bg-white/5 rounded-l-xl rounded-br-xl text-gray-300' : 'bg-blue-500/20 rounded-r-xl rounded-bl-xl text-blue-100'}`}>
-                                        "{msg.text}"
+                                        &quot;{msg.text}&quot;
                                     </div>
                                 </div>
                             ))}
@@ -518,7 +518,7 @@ export default function HomeServicesPage() {
       <Section id="offer" className="py-32 bg-[#0B1120] border-t border-white/5">
         <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">The "Never Miss Another Call" Package</h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">The &quot;Never Miss Another Call&quot; Package</h2>
                 <p className="text-xl text-gray-400">Everything you need to dominate your market. Results Guaranteed.</p>
             </div>
 

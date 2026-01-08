@@ -45,12 +45,12 @@ export default function ConstructionPage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed font-normal">
-                Stop losing bids because you're stuck on a job site. The <span className="text-white font-bold">Ironclad Operating System</span> chases your leads, schedules your subs, and follows up on estimates 24/7.
+                Stop losing bids because you&apos;re stuck on a job site. The <span className="text-white font-bold">Ironclad Operating System</span> chases your leads, schedules your subs, and follows up on estimates 24/7.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
                 <Button onClick={() => setIsModalOpen(true)} size="lg" className="w-full sm:w-auto bg-yellow-600 text-black hover:bg-yellow-500 font-bold text-lg px-10 py-8 h-auto rounded-sm transition-all shadow-[0_0_20px_rgba(234,179,8,0.2)]">
-                    Start "Ghosted Bid" Recovery
+                    Start &quot;Ghosted Bid&quot; Recovery
                 </Button>
                 <Button variant="ghost" size="lg" className="w-full sm:w-auto text-gray-400 hover:text-white hover:bg-white/5 text-lg px-8 py-8 h-auto">
                     How It Works
@@ -69,15 +69,15 @@ export default function ConstructionPage() {
                 <div>
                      <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">Great Work. <br/> <span className="text-gray-500">Terrible Ops.</span></h2>
                      <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                         You didn't start a construction company to play secretary. But right now, you're losing $50k/month because you can't answer the phone while you're framing a wall.
+                         You didn&apos;t start a construction company to play secretary. But right now, you&apos;re losing $50k/month because you can&apos;t answer the phone while you&apos;re framing a wall.
                      </p>
                      
                      <div className="space-y-6">
                         <div className="flex gap-4">
                             <Smartphone className="w-8 h-8 text-red-500 shrink-0" />
                             <div>
-                                <h4 className="text-white font-bold text-lg">The "Voicemail Graveyard"</h4>
-                                <p className="text-gray-500 text-sm">Leads call, you don't answer, they call the next guy. Gone forever.</p>
+                                <h4 className="text-white font-bold text-lg">The &quot;Voicemail Graveyard&quot;</h4>
+                                <p className="text-gray-500 text-sm">Leads call, you don&apos;t answer, they call the next guy. Gone forever.</p>
                             </div>
                         </div>
                         <div className="flex gap-4">
@@ -103,7 +103,7 @@ export default function ConstructionPage() {
                         {/* Message Bubble - Chaos */}
                         <div className="bg-red-950/20 border border-red-900/40 p-4 rounded-lg rounded-tl-none max-w-[80%] opacity-50">
                             <div className="text-red-400 text-xs font-bold mb-1">CLIENT (MISSED CALL)</div>
-                            <div className="text-gray-400 text-sm">Hey, just checking on that quote from Tuesday? We're looking to move forward...</div>
+                            <div className="text-gray-400 text-sm">Hey, just checking on that quote from Tuesday? We&apos;re looking to move forward...</div>
                         </div>
                          {/* Message Bubble - Solution */}
                         <div className="self-end ml-auto bg-yellow-950/20 border border-yellow-600/40 p-4 rounded-lg rounded-tr-none max-w-[90%] shadow-lg">
@@ -111,7 +111,7 @@ export default function ConstructionPage() {
                                 <div className="text-yellow-500 text-xs font-bold">FOX TROVE AGENT (AUTO-REPLY)</div>
                                 <div className="text-[10px] text-gray-500">INSTANT</div>
                             </div>
-                            <div className="text-white text-sm">Hi John! Received your voicemail. I've pulled up your file. We can schedule that walkthrough for Thursday at 9am. Does that work?</div>
+                            <div className="text-white text-sm">Hi John! Received your voicemail. I&apos;ve pulled up your file. We can schedule that walkthrough for Thursday at 9am. Does that work?</div>
                         </div>
                         {/* Success Notification */}
                          <div className="bg-green-950/20 border border-green-900/40 p-3 rounded-lg flex items-center gap-3 mt-6">
@@ -133,7 +133,7 @@ export default function ConstructionPage() {
             <span className="text-yellow-600 font-bold tracking-widest uppercase text-xs mb-4 block">THE CORE SYSTEM</span>
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">The Ironclad Operating System.</h2>
             <p className="text-xl text-gray-400 mb-16 max-w-2xl mx-auto">
-                A "Digital Project Manager" that never sleeps, never complains, and never misses a lead.
+                A &quot;Digital Project Manager&quot; that never sleeps, never complains, and never misses a lead.
             </p>
 
              <div className="grid md:grid-cols-3 gap-6 mb-16">
@@ -161,7 +161,7 @@ export default function ConstructionPage() {
                  <div className="relative z-10 flex flex-col items-center">
                      <h3 className="text-3xl font-bold text-white mb-4">Try It Before You Pay.</h3>
                      <p className="text-lg text-gray-300 mb-8 max-w-xl">
-                         Give us your last 10 dead leads ("ghosted bids"). We will run our reactivation sequence on them for free. Only if we recover a job do we discuss a partnership.
+                         Give us your last 10 dead leads (&quot;ghosted bids&quot;). We will run our reactivation sequence on them for free. Only if we recover a job do we discuss a partnership.
                      </p>
                      
                      <div className="flex flex-col md:flex-row gap-4 items-center mb-8">
@@ -175,7 +175,7 @@ export default function ConstructionPage() {
                      </div>
 
                      <Button onClick={() => setIsModalOpen(true)} size="lg" className="w-full md:w-auto bg-yellow-600 text-black hover:bg-yellow-500 font-bold text-lg px-12 py-6 h-auto rounded-sm shadow-xl">
-                        Start "Ghosted Bid" Recovery
+                        Start &quot;Ghosted Bid&quot; Recovery
                     </Button>
                     <p className="mt-6 text-sm text-gray-500 font-medium">
                         <span className="text-yellow-500 font-bold">GUARANTEE:</span> We find $50k in lost opportunities in 30 days or we pay you.

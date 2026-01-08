@@ -213,7 +213,7 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services', mode
                                             className="bg-white/5 border-white/10"
                                         />
                                         <p className="text-xs text-blue-300/80 leading-tight">
-                                            We'll have our AI Voice Agent call you for a 5-min onboarding interview. It's the best way to see it in action.
+                                            We&apos;ll have our AI Voice Agent call you for a 5-min onboarding interview. It&apos;s the best way to see it in action.
                                         </p>
                                     </div>
                                     <Button 
@@ -434,7 +434,7 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services', mode
                                             <Check className="w-5 h-5" /> Report Sent to {data.email}
                                         </h4>
                                         <p className="text-gray-300 text-sm">
-                                            We've broken down exactly how FoxTrove can recapture this revenue.
+                                            We&apos;ve broken down exactly how FoxTrove can recapture this revenue.
                                         </p>
                                     </div>
                                  )}
@@ -444,7 +444,7 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services', mode
                                         {mode === 'offer' ? 'Complete Setup & Pay' : 'Claim Your Spot Now'}
                                     </Button>
                                     <p className="text-xs text-gray-400 max-w-sm mx-auto">
-                                        By clicking above, you'll be taken to our secure checkout to finalize your 30-day free trial setup.
+                                        By clicking above, you&apos;ll be taken to our secure checkout to finalize your 30-day free trial setup.
                                     </p>
                                  </div>
                             </motion.div>

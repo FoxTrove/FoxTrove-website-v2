@@ -18,7 +18,7 @@ export function ComparisonTable() {
           <tr className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
              <td className="py-6 px-4 text-gray-300 pl-6">Standard Answering Service</td>
              <td className="py-6 px-4 text-gray-300">$6,000 - $12,000</td>
-             <td className="py-6 px-4 text-gray-400 text-sm">Generic scripts, can't book directly, no rebooking.</td>
+             <td className="py-6 px-4 text-gray-400 text-sm">Generic scripts, can&apos;t book directly, no rebooking.</td>
           </tr>
           {/* WINNING ROW - ROSE GOLD GRADIENT */}
           <tr className="bg-gradient-to-r from-rose-500/10 to-transparent border border-rose-500/20 rounded-xl relative">

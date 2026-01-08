@@ -287,7 +287,7 @@ export function RevenueCalculator({ mode = 'audit' }: RevenueCalculatorProps) {
                       <div>
                           {mode === 'offer' ? (
                               <>
-                                  <h4 className="text-lg font-bold text-rose-100 mb-1">Founder's Rate Eligibility: CONFIRMED</h4>
+                                  <h4 className="text-lg font-bold text-rose-100 mb-1">Founder&apos;s Rate Eligibility: CONFIRMED</h4>
                                   <p className="text-rose-200/70 text-sm">
                                       Based on your inputs, your practice is an ideal candidate. You can lock in the $497/mo rate (First Month Free) today.
                                   </p>

@@ -36,7 +36,7 @@ export default function Home() {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-             Access is easy. <span className="text-white font-medium">Adaptation is hard.</span> We bridge the gap between "having AI" and "profiting from AI" by architecting the custom aggregation layer your business is missing.
+             Access is easy. <span className="text-white font-medium">Adaptation is hard.</span> We bridge the gap between &quot;having AI&quot; and &quot;profiting from AI&quot; by architecting the custom aggregation layer your business is missing.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in-up" style={{animationDelay: '0.4s'}}>
@@ -85,9 +85,9 @@ export default function Home() {
               </div>
              <h2 className="text-3xl md:text-5xl font-serif text-white mb-8">95% Of AI Pilots Fail.</h2>
              <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed mb-12">
-                 They fail because they start with a tool and hunt for a problem. They buy "access" instead of building "adaptation". 
+                 They fail because they start with a tool and hunt for a problem. They buy &quot;access&quot; instead of building &quot;adaptation&quot;. 
                  <br/><br/>
-                 Real value doesn't come from a chatbot. It comes from deep architectural changes that mold AI around your people, processes, and unique constraints.
+                 Real value doesn&apos;t come from a chatbot. It comes from deep architectural changes that mold AI around your people, processes, and unique constraints.
              </p>
          </div>
       </Section>
@@ -116,7 +116,7 @@ export default function Home() {
           
           <div className="text-center mb-16 px-4 relative z-10">
               <h2 className="text-3xl font-serif text-white mb-4">The Aggregation Protocol</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">We don't just "implement". We embed, distinct, and evolve.</p>
+              <p className="text-gray-400 max-w-2xl mx-auto">We don&apos;t just &quot;implement&quot;. We embed, distinct, and evolve.</p>
           </div>
           
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 px-4 relative z-10">
@@ -169,7 +169,7 @@ export default function Home() {
                 <Phone className="text-blue-500 w-6 h-6" />
               </div>
               <h3 className="text-2xl font-serif text-white mb-3 group-hover:text-blue-400 transition-colors">Home Services</h3>
-              <p className="text-gray-400 mb-4">The "Never Miss A Call" System</p>
+              <p className="text-gray-400 mb-4">The &quot;Never Miss A Call&quot; System</p>
               <div className="space-y-2 mb-6 text-sm text-gray-300">
                 <p>• 24/7 AI Dispatcher & Booking Agent</p>
                 <p>• Captures $50K+/yr in lost runtime</p>

@@ -62,7 +62,7 @@ export function MissedCallCalculator() {
                     How Much Is Voicemail <span className="text-red-500">Costing You?</span>
                 </h3>
                 <p className="text-gray-400 max-w-2xl mx-auto">
-                    Adjust the sliders to match your business metrics and see what you're losing annually to missed calls.
+                    Adjust the sliders to match your business metrics and see what you&apos;re losing annually to missed calls.
                 </p>
             </div>
 
@@ -158,7 +158,7 @@ export function MissedCallCalculator() {
                             {formatCurrency(annualLost)}
                         </div>
                         <p className="text-red-400 text-sm mb-8 font-medium bg-red-500/10 inline-block px-3 py-1 rounded-full border border-red-500/20">
-                            ⚠️ That's potential profit gone
+                            ⚠️ That&apos;s potential profit gone
                         </p>
 
                         <div className="space-y-3">

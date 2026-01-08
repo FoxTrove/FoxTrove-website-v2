@@ -241,7 +241,7 @@ export function EliteApplicationModal({ isOpen, onClose }: EliteApplicationModal
                                     <span className="text-red-400 text-[10px] font-mono uppercase tracking-widest">Q1 Availability: 1 Spot Remaining</span>
                                 </div>
                                 <h2 className="text-3xl md:text-4xl font-serif text-white mb-3">Does Your Business Qualify?</h2>
-                                <p className="text-gray-400">We carefully curate our partners to ensure we can deliver massive impact. Answer a few questions to see if we're a match.</p>
+                                <p className="text-gray-400">We carefully curate our partners to ensure we can deliver massive impact. Answer a few questions to see if we&apos;re a match.</p>
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
@@ -374,7 +374,7 @@ export function EliteApplicationModal({ isOpen, onClose }: EliteApplicationModal
                                 <div className="space-y-2 pt-2">
                                     <Label htmlFor="magicWand" className="text-xs uppercase tracking-wider text-[#D4AF37] flex items-center gap-2">
                                         <Sparkles className="w-3 h-3" />
-                                        The "Magic Wand" Question
+                                        The &quot;Magic Wand&quot; Question
                                     </Label>
                                     <p className="text-xs text-gray-500 mb-2">If you could solve one problem in your business today, what would it be?</p>
                                     <Textarea
@@ -413,7 +413,7 @@ export function EliteApplicationModal({ isOpen, onClose }: EliteApplicationModal
                             </div>
                             <h2 className="text-3xl font-serif text-white mb-4">Assessment Received</h2>
                             <p className="text-gray-400 mb-8 leading-relaxed">
-                                Thank you, {formData.name}. We've received your details.
+                                Thank you, {formData.name}. We&apos;ve received your details.
                                 <br/><br/>
                                 Our team is currently reviewing your profile to see if our systems are a good fit for your infrastructure. You can expect a personal response at <strong>{formData.email}</strong> shortly regarding next steps.
                             </p>
@@ -439,7 +439,7 @@ export function EliteApplicationModal({ isOpen, onClose }: EliteApplicationModal
                                     <Sparkles className="w-6 h-6 text-[#D4AF37]" />
                                     <span>Congratulations.</span>
                                 </h2>
-                                <p className="text-gray-400">Based on your initial profile, it's likely you qualify for the Elite Partner Program.</p>
+                                <p className="text-gray-400">Based on your initial profile, it&apos;s likely you qualify for the Elite Partner Program.</p>
                             </div>
                             
                             {/* Custom On-Brand Scheduler Logic */}
@@ -533,7 +533,7 @@ export function EliteApplicationModal({ isOpen, onClose }: EliteApplicationModal
                             <div className="w-20 h-20 bg-[#D4AF37]/10 rounded-full flex items-center justify-center mx-auto mb-8 border border-[#D4AF37]/20">
                                 <Sparkles className="w-10 h-10 text-[#D4AF37]" />
                             </div>
-                            <h2 className="text-3xl font-serif text-white mb-4">You're Booked.</h2>
+                            <h2 className="text-3xl font-serif text-white mb-4">You&apos;re Booked.</h2>
                             <p className="text-gray-400 mb-8 leading-relaxed">
                                 Transformation Initiated.
                                 <br/><br/>

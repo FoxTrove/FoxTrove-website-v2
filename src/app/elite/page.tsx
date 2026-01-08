@@ -353,9 +353,9 @@ export default function ElitePage() {
                   The <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">Adoption Gap</span> used by 95% of companies.
               </h2>
               <p className="text-xl text-gray-400 mb-12 leading-relaxed">
-                  Recent studies show that <strong className="text-white">95% of AI pilots fail</strong> to deliver ROI. Why? Because they treat AI as a "tool" to be bought, not an "infrastructure" to be adapted. 
+                  Recent studies show that <strong className="text-white">95% of AI pilots fail</strong> to deliver ROI. Why? Because they treat AI as a &quot;tool&quot; to be bought, not an &quot;infrastructure&quot; to be adapted. 
                   <br/><br/>
-                  While your competitors are stuck in "Pilot Purgatory," your operation is decaying from the invisible entropy of manual processes.
+                  While your competitors are stuck in &quot;Pilot Purgatory,&quot; your operation is decaying from the invisible entropy of manual processes.
               </p>
 
               <div className="grid md:grid-cols-3 gap-8">
@@ -434,7 +434,7 @@ export default function ElitePage() {
           <div className="max-w-5xl mx-auto px-4 relative z-10">
               <div className="text-center mb-24">
                   <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">The Deployment Protocol</h2>
-                  <p className="text-gray-400 max-w-2xl mx-auto text-lg">We don't guess. We execute a military-grade rollout sequence designed to mitigate risk and guarantee adoption.</p>
+                  <p className="text-gray-400 max-w-2xl mx-auto text-lg">We don&apos;t guess. We execute a military-grade rollout sequence designed to mitigate risk and guarantee adoption.</p>
               </div>
 
               <div className="relative">
@@ -506,7 +506,7 @@ export default function ElitePage() {
                      </div>
                      <h3 className="text-xl font-serif text-white mb-4">Direct-Line Access</h3>
                      <p className="text-gray-400 text-sm leading-relaxed">
-                         You don't deal with support tickets or junior managers. You get a direct Slack line to our engineering team and founders. We become your fractional CTO.
+                         You don&apos;t deal with support tickets or junior managers. You get a direct Slack line to our engineering team and founders. We become your fractional CTO.
                      </p>
                  </div>
                  
@@ -517,7 +517,7 @@ export default function ElitePage() {
                      </div>
                      <h3 className="text-xl font-serif text-white mb-4">Full IP Sovereignty</h3>
                      <p className="text-gray-400 text-sm leading-relaxed">
-                         We don't rent you software. We build assets. You own the code, the agents, and the data. No vendor lock-in. 100% transferability.
+                         We don&apos;t rent you software. We build assets. You own the code, the agents, and the data. No vendor lock-in. 100% transferability.
                      </p>
                  </div>
 
@@ -528,7 +528,7 @@ export default function ElitePage() {
                      </div>
                      <h3 className="text-xl font-serif text-white mb-4">Continuous Evolution</h3>
                      <p className="text-gray-400 text-sm leading-relaxed">
-                         The market moves fast. We don't just "deploy and leave." We monitor your system quarterly, upgrading models as new LLMs are released to keep your edge sharp.
+                         The market moves fast. We don&apos;t just &quot;deploy and leave.&quot; We monitor your system quarterly, upgrading models as new LLMs are released to keep your edge sharp.
                      </p>
                  </div>
               </div>
@@ -674,7 +674,7 @@ export default function ElitePage() {
 
                                      <div className="border-t border-white/10 pt-4 mt-auto">
                                         <p className="text-[#D4AF37]/60 text-xs font-medium text-center italic">
-                                            "We keep building. You keep growing."
+                                            &quot;We keep building. You keep growing.&quot;
                                         </p>
                                      </div>
                                 </div>
@@ -730,12 +730,12 @@ export default function ElitePage() {
                             />
                       </div>
 
-                      <h3 className="text-3xl font-serif text-white mb-8">The "Zero-Risk" Protocol</h3>
+                      <h3 className="text-3xl font-serif text-white mb-8">The &quot;Zero-Risk&quot; Protocol</h3>
                       
                       <div className="bg-white/[0.03] border border-white/10 rounded-sm p-8 max-w-3xl mx-auto mb-10 relative overflow-hidden">
                           <div className="absolute top-0 left-0 w-1 h-full bg-[#D4AF37]"></div>
                           <p className="text-gray-300 text-lg md:text-xl leading-relaxed italic font-light">
-                              "If we accept you as a partner, we guarantee a minimum of <span className="text-[#D4AF37] font-bold">$300,000</span> in added value (Revenue or Savings) in Year 1, or we <span className="text-[#D4AF37] font-bold border-b border-[#D4AF37]/30">refund 100% of our fees</span>."
+                              &quot;If we accept you as a partner, we guarantee a minimum of <span className="text-[#D4AF37] font-bold">$300,000</span> in added value (Revenue or Savings) in Year 1, or we <span className="text-[#D4AF37] font-bold border-b border-[#D4AF37]/30">refund 100% of our fees</span>.&quot;
                           </p>
                       </div>
 

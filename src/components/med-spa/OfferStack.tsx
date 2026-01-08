@@ -25,7 +25,7 @@ export function OfferStack({ onClaim }: OfferStackProps) {
                 <div className="bg-gradient-to-r from-[#1f0f0f] to-[#0a0a0a] px-8 py-10 text-center border-b border-white/5 relative overflow-hidden">
                     <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rose-500/50 to-transparent"></div>
                     
-                    <h3 className="text-3xl md:text-4xl font-serif text-white mb-2 tracking-tight">The "Founder's Rate" Stack</h3>
+                    <h3 className="text-3xl md:text-4xl font-serif text-white mb-2 tracking-tight">The &quot;Founder&apos;s Rate&quot; Stack</h3>
                     <p className="text-rose-300/90 font-medium mb-8">Everything Included For First {totalSpots} Partners</p>
                     
                     {/* Scarcity Meter */}
@@ -138,7 +138,7 @@ export function OfferStack({ onClaim }: OfferStackProps) {
                             <div className="absolute -top-6 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 whitespace-nowrap bg-rose-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg border border-rose-400">
                                 SAVE $7,000+ IN YEAR 1
                             </div>
-                             <div className="text-rose-300 text-xs uppercase tracking-widest mb-2 font-bold">Your Founder's Rate</div>
+                             <div className="text-rose-300 text-xs uppercase tracking-widest mb-2 font-bold">Your Founder&apos;s Rate</div>
                              <div className="flex flex-col items-center md:items-start">
                                 <div className="text-2xl font-bold text-white">$2,500 Setup</div>
                                 <div className="text-4xl font-serif text-white font-medium flex items-baseline gap-1">
