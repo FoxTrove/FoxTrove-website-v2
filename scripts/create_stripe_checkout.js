@@ -27,12 +27,15 @@ async function createProductAndLink(name, description, setupAmount, subAmount, r
         nickname: 'Monthly Subscription',
     });
 
-    // 3. Create Payment Link
+    // 3. Create Payment Link with 30-Day Trial
     const paymentLink = await stripe.paymentLinks.create({
         line_items: [
             { price: setupPrice.id, quantity: 1 },
             { price: subPrice.id, quantity: 1 },
         ],
+        subscription_data: {
+            trial_period_days: 30, // First month free logic
+        },
         after_completion: {
             type: 'redirect',
             redirect: { url: redirectUrl },
@@ -45,21 +48,21 @@ async function createProductAndLink(name, description, setupAmount, subAmount, r
 
 async function main() {
     try {
-        // Home Services Product
+        // Home Services Product ($297/mo + Trial)
         await createProductAndLink(
             'FoxTrove Home Services AI',
-            '24/7 Voice Agent + Lead Interception. Includes $2,500 Setup and $297/mo Service.',
+            '24/7 Voice Agent + Lead Interception. Includes $2,500 Setup and $297/mo Service (First Month Free).',
             250000, // $2500
             29700,   // $297
             'https://foxtrove.ai/home-services/success?session_id={CHECKOUT_SESSION_ID}'
         );
 
-        // Med Spa Product
+        // Med Spa Product ($497/mo + Trial)
         await createProductAndLink(
             'FoxTrove Med Spa Recovery System',
-            'Patient Revenue Recovery System. Includes $2,500 Setup and $297/mo Service.',
+            'Patient Revenue Recovery System. Includes $2,500 Setup and $497/mo Service (First Month Free).',
             250000, // $2500
-            29700,   // $297
+            49700,   // $497 (INCREASED)
             'https://foxtrove.ai/med-spa/success?session_id={CHECKOUT_SESSION_ID}'
         );
 

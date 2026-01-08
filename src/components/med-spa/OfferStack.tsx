@@ -124,7 +124,7 @@ export function OfferStack({ onClaim }: OfferStackProps) {
                              <div className="text-gray-500 text-xs uppercase tracking-widest mb-2 font-semibold">Standard Pricing</div>
                              <div className="flex flex-col items-center md:items-end gap-0.5">
                                 <div className="text-xl text-gray-400 line-through decoration-rose-500/50 decoration-2">$6,000 Setup</div>
-                                <div className="text-xl text-gray-400 line-through decoration-rose-500/50 decoration-2">+ $599/mo</div>
+                                <div className="text-xl text-gray-400 line-through decoration-rose-500/50 decoration-2">+ $997/mo</div>
                              </div>
                         </div>
 
@@ -142,7 +142,7 @@ export function OfferStack({ onClaim }: OfferStackProps) {
                              <div className="flex flex-col items-center md:items-start">
                                 <div className="text-2xl font-bold text-white">$2,500 Setup</div>
                                 <div className="text-4xl font-serif text-white font-medium flex items-baseline gap-1">
-                                    + $297<span className="text-lg text-gray-400 font-sans font-normal">/mo</span>
+                                    + $497<span className="text-lg text-gray-400 font-sans font-normal">/mo (First Month Free)</span>
                                 </div>
                              </div>
                         </div>

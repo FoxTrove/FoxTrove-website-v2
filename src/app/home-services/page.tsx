@@ -442,7 +442,7 @@ export default function HomeServicesPage() {
                      {/* Cost & Scarcity */}
                  <div className="flex flex-col gap-3 mb-10 items-center justify-center p-6 bg-white/5 rounded-xl border border-white/10 max-w-lg mx-auto w-full backdrop-blur-sm">
                      <div className="text-sm text-blue-300 font-semibold uppercase tracking-wider">Investment</div>
-                     <span className="text-5xl font-bold text-white tracking-tight">$2,500 <span className="text-xl font-normal text-gray-400">+ $297/mo</span></span>
+                     <span className="text-5xl font-bold text-white tracking-tight">$2,500 <span className="text-xl font-normal text-gray-400">+ $297/mo (First Month Free)</span></span>
                      
                      {/* Scarcity Progress Bar */}
                      <div className="w-full max-w-[260px] mt-4">
@@ -462,7 +462,7 @@ export default function HomeServicesPage() {
                      </div>
                  </div>
 
-                 <Button onClick={() => window.location.href = 'https://buy.stripe.com/test_9B64gBff57C8fYu0aJ0Ba01'} size="lg" className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold text-xl px-16 py-8 h-auto uppercase shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all rounded-xl relative overflow-hidden group">
+                 <Button onClick={() => window.location.href = 'https://buy.stripe.com/test_00wdRb1of09GaEacXv0Ba03'} size="lg" className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold text-xl px-16 py-8 h-auto uppercase shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all rounded-xl relative overflow-hidden group">
                      <span className="relative z-10">Claim Offer</span>
                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                  </Button>
