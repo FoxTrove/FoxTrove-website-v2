@@ -19,6 +19,7 @@ type FormData = {
     weeklyCalls: number;
     avgJobValue: number;
     email: string;
+    phone?: string;
     name: string;
 };
 
@@ -45,6 +46,7 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services', mode
         weeklyCalls: 40,
         avgJobValue: 850,
         email: '',
+        phone: '',
         name: ''
     });
 
@@ -87,7 +89,9 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services', mode
                 callHandling: data.callHandling,
                 weeklyCalls: data.weeklyCalls,
                 avgJobValue: data.avgJobValue,
-                lostRevenue: lostRev
+
+                lostRevenue: lostRev,
+                phone: data.phone
             }
         });
         
@@ -113,7 +117,8 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services', mode
                 callHandling: data.callHandling,
                 weeklyCalls: data.weeklyCalls,
                 avgJobValue: data.avgJobValue,
-                lostRevenue: lostRev
+                lostRevenue: lostRev,
+                phone: data.phone
             }
         });
         
@@ -194,6 +199,22 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services', mode
                                             placeholder="john@company.com"
                                             className="bg-white/5 border-white/10"
                                         />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="phone" className="flex items-center justify-between">
+                                            Phone Number <span className="text-xs text-gray-500 font-normal">(Optional)</span>
+                                        </Label>
+                                        <Input 
+                                            id="phone" 
+                                            type="tel" 
+                                            value={data.phone}
+                                            onChange={(e) => setData({...data, phone: e.target.value})}
+                                            placeholder="(555) 123-4567"
+                                            className="bg-white/5 border-white/10"
+                                        />
+                                        <p className="text-xs text-blue-300/80 leading-tight">
+                                            We'll have our AI Voice Agent call you for a 5-min onboarding interview. It's the best way to see it in action.
+                                        </p>
                                     </div>
                                     <Button 
                                         onClick={handleNext}
