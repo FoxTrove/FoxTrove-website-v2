@@ -34,7 +34,7 @@ interface LeadGenModalProps {
 }
 
 export function LeadGenModal({ isOpen, onClose, vertical = 'home-services', mode = 'report' }: LeadGenModalProps) {
-    const [step, setStep] = useState(0);
+    const [step, setStep] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [result, setResult] = useState<number | null>(null);
 
