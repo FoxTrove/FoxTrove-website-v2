@@ -257,9 +257,9 @@ export function RevenueCalculator() {
       });
 
       setLoading(false);
-      
       if (result.success) {
-          setIsComplete(true);
+          // Redirect to Stripe after successful capture
+          window.location.href = 'https://buy.stripe.com/test_6oU6oJ5Ev9KgcMi9Lj0Ba04';
       } else {
           alert("Failed to submit. Please try again.");
       }

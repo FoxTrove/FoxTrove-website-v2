@@ -462,7 +462,7 @@ export default function HomeServicesPage() {
                      </div>
                  </div>
 
-                 <Button onClick={() => window.location.href = 'https://buy.stripe.com/test_00wdRb1of09GaEacXv0Ba03'} size="lg" className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold text-xl px-16 py-8 h-auto uppercase shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all rounded-xl relative overflow-hidden group">
+                 <Button onClick={() => setIsModalOpen(true)} size="lg" className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold text-xl px-16 py-8 h-auto uppercase shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all rounded-xl relative overflow-hidden group">
                      <span className="relative z-10">Claim Offer</span>
                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                  </Button>

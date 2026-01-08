@@ -376,8 +376,8 @@ export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: Le
                                      </p>
                                  </div>
 
-                                 <Button size="lg" className="w-full bg-green-600 hover:bg-green-500 font-bold text-lg animate-pulse" onClick={onClose}>
-                                     Schedule Your Implementation Call
+                                 <Button size="lg" className="w-full bg-green-600 hover:bg-green-500 font-bold text-lg animate-pulse" onClick={() => window.location.href = 'https://buy.stripe.com/test_00wdRb1of09GaEacXv0Ba03'}>
+                                     Lock In Your Spot Now
                                  </Button>
                             </motion.div>
                         )}
