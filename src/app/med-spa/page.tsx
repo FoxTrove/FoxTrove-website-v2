@@ -275,7 +275,7 @@ export default function MedSpaPage() {
       <Section id="offer" className="py-32 bg-[#0F0F10] border-t border-white/5 relative overflow-hidden">
          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-rose-500/5 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="max-w-5xl mx-auto relative z-10">
-             <OfferStack onClaim={() => window.location.href = 'https://buy.stripe.com/test_9B6cN7gj96y413Af5D0Ba00'} />
+             <OfferStack onClaim={() => window.location.href = 'https://buy.stripe.com/test_7sYaEZgj97C84fM1eN0Ba02'} />
         </div>
       </Section>
     </main>
