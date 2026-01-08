@@ -22,7 +22,7 @@ export function LivingHeroBackground() {
     setMounted(true);
   }, []);
 
-  const particles = generateParticles(30);
+  const [particles] = useState(() => generateParticles(30));
 
   if (!mounted) return null;
 
