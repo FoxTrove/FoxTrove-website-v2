@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Calculator, ArrowRight, DollarSign, RefreshCcw, Lock, ChevronLeft, ChevronRight, Check, X, Loader2, ScanSearch, FileText } from 'lucide-react';
+import { submitLead } from '@/app/actions/submitLead';
 
 export function RevenueCalculator() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -232,13 +233,36 @@ export function RevenueCalculator() {
       }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       setLoading(true);
-      setTimeout(() => {
-          setLoading(false);
+
+      const result = await submitLead({
+          name: 'Med Spa Lead', // or prompt name? using email as primary identifier if name missing
+          email: formData.email,
+          vertical: 'med-spa',
+          source: 'RevenueCalculator',
+          metadata: {
+              appointments: formData.appointments,
+              avgValue: formData.avgValue,
+              noShowRate: formData.noShowRate,
+              rebookingRate: formData.rebookingRate,
+              hasAutomatedFollowup: formData.hasAutomatedFollowup,
+              hasAfterHoursResponse: formData.hasAfterHoursResponse,
+              pms: formData.pms,
+              goal: formData.goal,
+              leakage: totalLeakage,
+              recovery: recoveryPotential
+          }
+      });
+
+      setLoading(false);
+      
+      if (result.success) {
           setIsComplete(true);
-      }, 1500);
+      } else {
+          alert("Failed to submit. Please try again.");
+      }
   };
 
   if (isComplete) {

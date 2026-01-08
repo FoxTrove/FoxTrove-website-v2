@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Section } from '@/components/ui/section';
 import { Hammer, HardHat, FileText, Smartphone, DollarSign, ArrowRight, ShieldCheck, ClipboardCheck } from 'lucide-react';
+import { LeadGenModal } from '@/components/home-services/LeadGenModal';
+import { useState } from 'react';
 
 // Animation variants
 const fadeInUp = {
@@ -12,8 +14,11 @@ const fadeInUp = {
 };
 
 export default function ConstructionPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-[#0f0f10] text-gray-100 font-sans overflow-hidden">
+      <LeadGenModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} vertical="construction" />
       
       {/* 1. HERO - Pragmatic, Blue Collar Focus */}
       <Section className="min-h-[90vh] flex flex-col items-center justify-center relative border-b border-white/5 !py-0">
@@ -44,7 +49,7 @@ export default function ConstructionPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-                <Button size="lg" className="w-full sm:w-auto bg-yellow-600 text-black hover:bg-yellow-500 font-bold text-lg px-10 py-8 h-auto rounded-sm transition-all shadow-[0_0_20px_rgba(234,179,8,0.2)]">
+                <Button onClick={() => setIsModalOpen(true)} size="lg" className="w-full sm:w-auto bg-yellow-600 text-black hover:bg-yellow-500 font-bold text-lg px-10 py-8 h-auto rounded-sm transition-all shadow-[0_0_20px_rgba(234,179,8,0.2)]">
                     Start "Ghosted Bid" Recovery
                 </Button>
                 <Button variant="ghost" size="lg" className="w-full sm:w-auto text-gray-400 hover:text-white hover:bg-white/5 text-lg px-8 py-8 h-auto">
@@ -169,7 +174,7 @@ export default function ConstructionPage() {
                          </div>
                      </div>
 
-                     <Button size="lg" className="w-full md:w-auto bg-yellow-600 text-black hover:bg-yellow-500 font-bold text-lg px-12 py-6 h-auto rounded-sm shadow-xl">
+                     <Button onClick={() => setIsModalOpen(true)} size="lg" className="w-full md:w-auto bg-yellow-600 text-black hover:bg-yellow-500 font-bold text-lg px-12 py-6 h-auto rounded-sm shadow-xl">
                         Start "Ghosted Bid" Recovery
                     </Button>
                     <p className="mt-6 text-sm text-gray-500 font-medium">

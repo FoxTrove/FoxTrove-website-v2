@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider'; // Assuming this exists from previous step context
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { submitLead } from '@/app/actions/submitLead';
 
 
 // Types
@@ -28,9 +29,10 @@ const HANDLING_METHODS = ['I answer mostly', 'Office Manager', 'Answering Servic
 interface LeadGenModalProps {
     isOpen: boolean;
     onClose: () => void;
+    vertical?: string;
 }
 
-export function LeadGenModal({ isOpen, onClose }: LeadGenModalProps) {
+export function LeadGenModal({ isOpen, onClose, vertical = 'home-services' }: LeadGenModalProps) {
     const [step, setStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [result, setResult] = useState<number | null>(null);
@@ -67,13 +69,33 @@ export function LeadGenModal({ isOpen, onClose }: LeadGenModalProps) {
         e.preventDefault();
         setIsSubmitting(true);
         
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
         const lostRev = calculateLostRevenue();
         setResult(lostRev);
+
+        const result = await submitLead({
+            name: data.name,
+            email: data.email,
+            vertical: vertical, 
+            source: 'LeadGenModal',
+            metadata: {
+                industry: data.industry,
+                teamSize: data.teamSize,
+                callHandling: data.callHandling,
+                weeklyCalls: data.weeklyCalls,
+                avgJobValue: data.avgJobValue,
+                lostRevenue: lostRev
+            }
+        });
+        
         setIsSubmitting(false);
-        setStep(totalSteps + 1); // Show result
+
+        if (result.success) {
+            setStep(totalSteps + 1); // Show result
+        } else {
+            alert("Failed to save your report. Please try again.");
+            // Optional: still show result even if save fails?
+            // setStep(totalSteps + 1); 
+        }
     };
 
     if (!isOpen) return null;

@@ -178,6 +178,8 @@ export function EliteApplicationModal({ isOpen, onClose }: EliteApplicationModal
             name: formData.name,
             email: formData.email,
             website: formData.website,
+            vertical: 'elite',
+            source: 'EliteApplicationModal',
             revenue: formData.revenue,
             teamSize: formData.teamSize,
             crm: formData.crm,
