@@ -85,12 +85,22 @@ export function useVapi() {
 
   const toggleCall = useCallback(async () => {
     console.log('toggleCall triggered. Current status:', status);
-    if (!vapiRef.current) {
+    
+    const vapi = vapiRef.current;
+    
+    if (!vapi) {
         console.error('VAPI instance not initialized');
+        // Try to re-init if possible or alert user
+        if (!publicKey) {
+             alert('Vapi Public Key is missing. Please check your configuration.');
+             return;
+        }
         return;
     }
+    
     if (!assistantId) {
         console.error('Assistant ID missing');
+        alert('Vapi Assistant ID is missing. Please check your configuration.');
         return;
     }
 
@@ -98,14 +108,25 @@ export function useVapi() {
       setStatus('connecting');
       try {
         console.log('Starting call with assistantId:', assistantId);
-        await vapiRef.current.start(assistantId);
+        
+        // Add a timeout to prevent infinite 'connecting' state
+        const timeoutPromise = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Connection timed out')), 10000)
+        );
+        
+        await Promise.race([
+            vapi.start(assistantId),
+            timeoutPromise
+        ]);
+        
       } catch (err) {
         console.error('Failed to start call:', err);
         setStatus('error');
+        alert('Failed to connect to AI Voice Agent. Please try again.');
       }
     } else {
         console.log('Stopping call...');
-        vapiRef.current.stop();
+        vapi.stop();
     }
   }, [status]);
   
