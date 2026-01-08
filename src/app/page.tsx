@@ -60,16 +60,16 @@ export default function Home() {
           {/* Trust Ticker */}
           <div className="mt-24 pt-12 border-t border-white/5 flex flex-wrap justify-center gap-12 md:gap-24 animate-fade-in-up" style={{animationDelay: '0.5s'}}>
               <div className="text-center group hover:-translate-y-1 transition-transform cursor-default">
-                  <span className="block text-4xl font-bold text-white mb-1 tabular-nums group-hover:text-[#D4AF37] transition-colors">$12M+</span>
-                  <span className="text-xs uppercase tracking-widest text-gray-500">Revenue Automated</span>
+                  <span className="block text-2xl md:text-3xl font-bold text-white mb-1 group-hover:text-[#D4AF37] transition-colors">Enterprise-Grade</span>
+                  <span className="text-xs uppercase tracking-widest text-gray-500">Architecture</span>
               </div>
               <div className="text-center group hover:-translate-y-1 transition-transform cursor-default">
-                  <span className="block text-4xl font-bold text-white mb-1 tabular-nums group-hover:text-[#D4AF37] transition-colors">40+</span>
-                  <span className="text-xs uppercase tracking-widest text-gray-500">Active Partners</span>
+                  <span className="block text-2xl md:text-3xl font-bold text-white mb-1 group-hover:text-[#D4AF37] transition-colors">Vertical-Specific</span>
+                  <span className="text-xs uppercase tracking-widest text-gray-500">Core Systems</span>
               </div>
               <div className="text-center group hover:-translate-y-1 transition-transform cursor-default">
-                  <span className="block text-4xl font-bold text-white mb-1 group-hover:text-[#D4AF37] transition-colors">24/7</span>
-                  <span className="text-xs uppercase tracking-widest text-gray-500">System Uptime</span>
+                  <span className="block text-2xl md:text-3xl font-bold text-white mb-1 group-hover:text-[#D4AF37] transition-colors">24/7</span>
+                  <span className="text-xs uppercase tracking-widest text-gray-500">Active Uptime</span>
               </div>
           </div>
         </div>

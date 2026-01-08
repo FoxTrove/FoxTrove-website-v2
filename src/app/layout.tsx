@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, IBM_Plex_Sans } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { MobileEliteCTA } from '@/components/ui/mobile-elite-cta';
 import "./globals.css";
 
 const playfair = Playfair_Display({ 
@@ -35,7 +36,9 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <MobileEliteCTA />
       </body>
     </html>
   );
 }
+

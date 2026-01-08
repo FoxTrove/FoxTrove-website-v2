@@ -4,12 +4,20 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Section } from '@/components/ui/section';
 import { Phone, Play, Pause, ShieldAlert, ShieldCheck, Zap, HelpCircle, Calculator, CalendarCheck, Split, CheckCircle2 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+const mockConversation = [
+    { role: 'assistant', text: "Thanks for calling Mike's Plumbing. This is Sarah. Are you calling about a residential issue or a commercial emergency?" },
+    { role: 'user', text: "Yeah, hi. My basement is flooding right now. I need someone ASAP." },
+    { role: 'assistant', text: "I see you're in the 84109 area. I have a tech 10 minutes away. I am booking him now. You will receive a text confirmation in 10 seconds." }
+];
 import { LeadGenModal } from '@/components/home-services/LeadGenModal';
 import { ComparisonTable } from '@/components/home-services/ComparisonTable';
 import { IntegrationMarquee } from '@/components/home-services/IntegrationMarquee';
 import { StickyMobileCTA } from '@/components/home-services/StickyMobileCTA';
 import { FloatingMoneyCounter } from '@/components/home-services/FloatingMoneyCounter';
+import { useVapi } from '@/hooks/useVapi';
+import { VoiceWave } from '@/components/home-services/VoiceWave';
 
 // Animation variants
 const fadeInUp = {
@@ -18,7 +26,62 @@ const fadeInUp = {
 };
 
 export default function HomeServicesPage() {
+    const { status, toggleCall, volume, userVolume, conversation } = useVapi();
     const [isPlaying, setIsPlaying] = useState(false);
+    
+    // New Transcript Logic
+    const [showLiveTranscript, setShowLiveTranscript] = useState(false);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const [animatedMock, setAnimatedMock] = useState<typeof mockConversation>([]);
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    // Linger Logic
+    useEffect(() => {
+        let timeout: NodeJS.Timeout;
+        if (status !== 'idle') {
+            setShowLiveTranscript(true);
+            if (status === 'active') {
+                setShowSuggestions(true);
+            }
+        } else {
+            setShowSuggestions(false);
+            // Linger for 8 seconds after call ends
+            timeout = setTimeout(() => {
+                setShowLiveTranscript(false);
+            }, 8000);
+        }
+        return () => clearTimeout(timeout);
+    }, [status]);
+
+    // Animated Mock Logic
+    useEffect(() => {
+        if (showLiveTranscript) return;
+
+        let currentIndex = 0;
+        const interval = setInterval(() => {
+            setAnimatedMock(prev => {
+                if (prev.length >= mockConversation.length) {
+                    // Reset after a pause? Or just reset immediately?
+                    // Let's reset immediately for loop effect
+                    currentIndex = 0;
+                    return [];
+                }
+                const nextMsg = mockConversation[currentIndex % mockConversation.length];
+                currentIndex++;
+                return [...prev, nextMsg];
+            });
+        }, 2000); // Add message every 2 seconds
+
+        return () => clearInterval(interval);
+    }, [showLiveTranscript]);
+
+    // Auto-scroll logic
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [conversation, animatedMock, showLiveTranscript]);
+
     const [modalState, setModalState] = useState<{isOpen: boolean, mode: 'report' | 'offer'}>({
         isOpen: false, 
         mode: 'report'
@@ -149,13 +212,44 @@ export default function HomeServicesPage() {
                             <span className="ml-2 group-hover:translate-x-1 transition-transform">»</span>
                         </Button>
                         
-                         <Button 
-                            variant="outline" 
-                            className="border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-white/10 text-base px-8 py-6 h-auto rounded-lg backdrop-blur-sm transition-all"
+                        <Button 
+                            // Custom styled
+                            onClick={toggleCall}
+                            disabled={status === 'connecting'}
+                            className={`relative text-base px-8 py-6 h-auto rounded-lg transition-all min-w-[200px] overflow-hidden group
+                                ${status === 'active' 
+                                    ? 'bg-red-500/10 border border-red-500/50 text-red-400 hover:bg-red-500/20' 
+                                    : 'bg-white text-blue-900 border border-white hover:bg-gray-100 shadow-[0_0_20px_rgba(255,255,255,0.3)] animate-pulse-slow'
+                                }`}
                         >
-                            Hear The Demo
+                            {status === 'connecting' ? 'Connecting...' : status === 'active' ? (
+                                <div className="flex items-center gap-4">
+                                   <div className="flex items-center text-xs gap-2">
+                                       <span className="text-white/50">YOU</span>
+                                       <div className="text-green-400">
+                                            <VoiceWave isSpeaking={true} volume={userVolume} />
+                                       </div>
+                                   </div>
+                                   <div className="h-4 w-px bg-white/20"></div>
+                                   <div className="flex items-center text-xs gap-2">
+                                       <div className="text-red-400">
+                                            <VoiceWave isSpeaking={true} volume={volume} />
+                                       </div>
+                                       <span className="text-white/50">AI</span>
+                                   </div>
+                                </div>
+                            ) : (
+                                <span className="flex items-center gap-2 font-bold">
+                                    <Phone className="w-4 h-4 fill-current motion-safe:animate-tada" />
+                                    Hear The Demo
+                                </span>
+                            )}
                         </Button>
                     </div>
+                    <p className="mt-3 text-xs text-blue-300/60 pl-1 flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400/50"></span>
+                        Requires microphone access to speak with AI.
+                    </p>
 
                     {/* Scarcity Indicator (Subtle) */}
                     <div className="mt-4 flex items-center gap-2 text-xs font-medium text-blue-300/80">
@@ -322,47 +416,94 @@ export default function HomeServicesPage() {
                     </ul>
                 </div>
 
-                {/* Simulated Audio/UI Interface (Same as before, it works well) */}
-                 <div className="relative bg-[#1E293B] rounded-xl border border-white/10 p-8 shadow-2xl">
-                     <div className="absolute -top-4 -right-4 bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full animate-pulse">
+                {/* Simulated Audio/UI Interface */}
+                 <div className="relative bg-[#1E293B] rounded-xl border border-white/10 p-8 shadow-2xl h-[480px] flex flex-col">
+                     <div className="absolute -top-4 -right-4 bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full animate-pulse z-10">
                         LIVE CALL
                     </div>
-                    <div className="space-y-6">
-                        <div className="flex gap-4">
-                            <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center shrink-0">
-                                <Phone className="w-4 h-4 text-white" />
-                            </div>
-                            <div className="bg-blue-500/20 p-4 rounded-r-xl rounded-bl-xl text-sm text-blue-100">
-                                "Thanks for calling Mike's Plumbing. This is Sarah. Are you calling about a residential issue or a commercial emergency?"
-                            </div>
+                    
+                    {/* Things to Try Overlay */}
+                    {status === 'active' && showSuggestions && (
+                         <div className="absolute top-4 left-4 right-4 z-20 bg-[#0F172A]/90 backdrop-blur-md border border-blue-500/30 p-4 rounded-xl shadow-xl animate-in fade-in slide-in-from-top-2 duration-500">
+                             <div className="flex justify-between items-start mb-2">
+                                 <h5 className="text-xs font-bold text-blue-400 uppercase tracking-wider">Things to try saying:</h5>
+                                 <button onClick={() => setShowSuggestions(false)} className="text-gray-400 hover:text-white transition-colors">
+                                     <span className="sr-only">Close</span>
+                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                                 </button>
+                             </div>
+                             <ul className="space-y-2 text-sm text-gray-300">
+                                 <li className="flex gap-2">
+                                     <span className="text-blue-500">"</span>
+                                     Can you book an appointment for next Tuesday?
+                                     <span className="text-blue-500">"</span>
+                                 </li>
+                                 <li className="flex gap-2">
+                                     <span className="text-blue-500">"</span>
+                                     What is your hourly rate for plumbing?
+                                     <span className="text-blue-500">"</span>
+                                 </li>
+                                 <li className="flex gap-2">
+                                     <span className="text-blue-500">"</span>
+                                     I have a pipe bursting in my basement!
+                                     <span className="text-blue-500">"</span>
+                                 </li>
+                             </ul>
+                         </div>
+                    )}
+
+                     <div className="flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent" ref={scrollRef}>
+                        <div className="space-y-6 pb-4 pt-10">
+                            {(showLiveTranscript ? conversation : animatedMock).map((msg, i) => (
+                                <div key={i} className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-gray-600' : 'bg-blue-500'}`}>
+                                        {msg.role === 'user' ? <span className="text-xs font-bold">C</span> : <Phone className="w-4 h-4 text-white" />}
+                                    </div>
+                                    <div className={`p-4 text-sm ${msg.role === 'user' ? 'bg-white/5 rounded-l-xl rounded-br-xl text-gray-300' : 'bg-blue-500/20 rounded-r-xl rounded-bl-xl text-blue-100'}`}>
+                                        "{msg.text}"
+                                    </div>
+                                </div>
+                            ))}
+                            {status === 'active' && conversation.length === 0 && (
+                                <div className="text-center text-xs text-white/30 italic py-4">Listening...</div>
+                            )}
                         </div>
-                        <div className="flex gap-4 flex-row-reverse">
-                            <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center shrink-0">
-                                <span className="text-xs font-bold">C</span>
-                            </div>
-                            <div className="bg-white/5 p-4 rounded-l-xl rounded-br-xl text-sm text-gray-300">
-                                "Yeah, hi. My basement is flooding right now. I need someone ASAP."
-                            </div>
-                        </div>
-                         <div className="flex gap-4">
-                            <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center shrink-0">
-                                <Phone className="w-4 h-4 text-white" />
-                            </div>
-                            <div className="bg-blue-500/20 p-4 rounded-r-xl rounded-bl-xl text-sm text-blue-100">
-                                "I see you're in the 84109 area. I have a tech 10 minutes away. I am booking him now. You will receive a text confirmation in 10 seconds."
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-                         <div className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Voice Clarity Demo</div>
+                     </div>
+
+                    <div className="mt-4 pt-6 border-t border-white/10 flex items-center justify-between bg-[#1E293B] z-10">
+                         <div className="text-xs text-gray-500 uppercase tracking-wider font-semibold flex items-center gap-3">
+                            Voice Clarity Demo
+                            {status === 'active' && (
+                                <div className="flex items-center gap-2 border-l border-white/10 pl-3">
+                                    <span className="text-[10px] text-green-500/70">YOU</span>
+                                    <div className="text-green-500">
+                                        <VoiceWave isSpeaking={true} volume={userVolume} bars={3} />
+                                    </div>
+                                    <span className="text-[10px] text-blue-500/70 ml-2">AI</span>
+                                    <div className="text-blue-500">
+                                        <VoiceWave isSpeaking={true} volume={volume} bars={3} />
+                                    </div>
+                                </div>
+                            )}
+                         </div>
                          <button 
-                            onClick={() => setIsPlaying(!isPlaying)}
-                            className="bg-white text-black rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                            onClick={toggleCall}
+                            className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg
+                                ${status === 'active' 
+                                    ? 'bg-red-500 hover:bg-red-600 text-white' 
+                                    : 'bg-blue-500 hover:bg-blue-600 text-white animate-pulse hover:animate-none'
+                                }
+                                ${status === 'connecting' ? 'opacity-80 cursor-wait' : ''}
+                            `}
                          >
-                             {isPlaying ? <Pause className="w-4 h-4 fill-current"/> : <Play className="w-4 h-4 fill-current ml-1"/> }
+                             {status === 'active' || status === 'connecting' 
+                                ? <><Pause className="w-4 h-4 fill-current"/> <span className="text-sm">End Demo</span></>
+                                : <><Play className="w-4 h-4 fill-current"/> <span className="text-sm">Try Live Demo</span></>
+                             }
                          </button>
                     </div>
                 </div>
+
             </div>
         </div>
       </Section>
