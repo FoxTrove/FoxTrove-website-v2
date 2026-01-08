@@ -5,7 +5,11 @@ import { Button } from '@/components/ui/button';
 
 import { useScarcity } from '@/hooks/useScarcity';
 
-export function OfferStack() {
+interface OfferStackProps {
+    onClaim?: () => void;
+}
+
+export function OfferStack({ onClaim }: OfferStackProps) {
     const { spotsLeft, spotsClaimed, totalSpots } = useScarcity();
     const progressPercentage = (spotsClaimed / totalSpots) * 100;
 
@@ -147,6 +151,7 @@ export function OfferStack() {
                     {/* CTA Button Area */}
                     <div className="mt-10 max-w-md mx-auto">
                         <Button 
+                            onClick={onClaim}
                             className="w-full bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-serif text-xl py-8 h-auto rounded-xl shadow-[0_0_40px_rgba(225,29,72,0.4)] hover:shadow-[0_0_60px_rgba(225,29,72,0.6)] hover:-translate-y-1 transition-all border border-rose-400/30 relative overflow-hidden group"
                         >
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none"></div>
