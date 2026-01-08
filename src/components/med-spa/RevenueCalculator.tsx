@@ -14,9 +14,12 @@ export function RevenueCalculator() {
   const [analysisStep, setAnalysisStep] = useState(0); // 0: None, 1: Processing, 2: Ready
   const [loading, setLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [showContact, setShowContact] = useState(true);
   
   // Form State
   const [formData, setFormData] = useState({
+      name: '',
+      email: '',
       appointments: 50,
       avgValue: 450,
       noShowRate: 22,
@@ -24,8 +27,7 @@ export function RevenueCalculator() {
       hasAutomatedFollowup: false,
       hasAfterHoursResponse: false,
       pms: '',
-      goal: '',
-      email: ''
+      goal: ''
   });
 
   // Calculations
@@ -221,24 +223,14 @@ export function RevenueCalculator() {
 
   const startAnalysis = () => {
     setAnalysisStep(1);
-    // Simulation sequence
-    setTimeout(() => {
-        // Step 1 done
-    }, 1000);
   };
-
-  const handleBack = () => {
-      if (currentQuestion > 0) {
-          setCurrentQuestion(prev => prev - 1);
-      }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
+  
+  const handleAnalysisComplete = async () => {
+      // Auto-submit after analysis
       setLoading(true);
-
+      
       const result = await submitLead({
-          name: 'Med Spa Lead', // or prompt name? using email as primary identifier if name missing
+          name: formData.name || 'Med Spa Inquiry',
           email: formData.email,
           vertical: 'med-spa',
           source: 'RevenueCalculator',
@@ -255,13 +247,21 @@ export function RevenueCalculator() {
               recovery: recoveryPotential
           }
       });
-
+      
       setLoading(false);
-      if (result.success) {
-          // Redirect to Stripe after successful capture
-          window.location.href = 'https://buy.stripe.com/test_6oU6oJ5Ev9KgcMi9Lj0Ba04';
-      } else {
-          alert("Failed to submit. Please try again.");
+      setIsComplete(true);
+  };
+
+  const handleBack = () => {
+      if (currentQuestion > 0) {
+          setCurrentQuestion(prev => prev - 1);
+      }
+  };
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      if(formData.email) {
+          setShowContact(false);
       }
   };
 
@@ -272,22 +272,10 @@ export function RevenueCalculator() {
               animate={{ opacity: 1, scale: 1 }}
               className="max-w-4xl mx-auto"
           >
-              <div className="text-center mb-10">
-                  <h3 className="text-xl text-gray-400 mb-2">Annual Revenue Leakage Detected</h3>
-                  <div className="text-5xl md:text-8xl font-bold font-serif text-white drop-shadow-[0_0_15px_rgba(225,29,72,0.5)] tracking-tight">
-                       ${totalLeakage.toLocaleString()}
-                  </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6 mb-10">
-                  <div className="bg-black/40 p-6 rounded-2xl border border-white/5">
-                      <div className="text-gray-400 text-sm mb-1">Lost to No-Shows</div>
-                      <div className="text-2xl font-bold text-rose-400">${lostToNoShows.toLocaleString()}</div>
-                  </div>
-                   <div className="bg-black/40 p-6 rounded-2xl border border-white/5">
-                      <div className="text-gray-400 text-sm mb-1">Lost to Low Retention</div>
-                      <div className="text-2xl font-bold text-rose-400">${lostToRetention.toLocaleString()}</div>
-                  </div>
+              <div className="text-center mb-6">
+                  <h3 className="text-rose-500 font-bold tracking-wider text-xl mb-2 animate-pulse">CONGRATULATIONS!</h3>
+                  <h4 className="text-white text-lg mb-6">Your practice qualifies for our Revenue Recovery System.</h4>
+                  <p className="text-gray-400 text-sm">We have 3 spots available for Med Spas in your area.</p>
               </div>
 
               <div className="bg-rose-500/10 border border-rose-500/30 rounded-2xl p-6 mb-8">
@@ -302,12 +290,17 @@ export function RevenueCalculator() {
                    </div>
               </div>
 
-              <Button 
-                  onClick={() => document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white text-xl py-8 h-auto rounded-full shadow-[0_0_30px_rgba(225,29,72,0.4)] animate-pulse"
-              >
-                  Fix This For $297/mo
-              </Button>
+              <div className="space-y-4">
+                  <Button 
+                      onClick={() => window.location.href = 'https://buy.stripe.com/test_6oU6oJ5Ev9KgcMi9Lj0Ba04'}
+                      className="w-full bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white text-xl py-8 h-auto rounded-full shadow-[0_0_30px_rgba(225,29,72,0.4)] animate-pulse"
+                  >
+                      Claim Your Spot Now
+                  </Button>
+                  <p className="text-xs text-gray-500 text-center">
+                      Secure checkout • 30-Day Risk-Free Trial
+                  </p>
+              </div>
           </motion.div>
       )
   }
@@ -315,55 +308,56 @@ export function RevenueCalculator() {
   // Analyzing View
   if (analysisStep === 1) {
        return (
-           <ProcessingSteps onComplete={() => setAnalysisStep(2)} />
+           <ProcessingSteps onComplete={handleAnalysisComplete} />
        )
   }
 
-  // Email Capture View
-  if (analysisStep === 2) {
-       return (
-            <div className="w-full max-w-2xl mx-auto">
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center relative overflow-hidden"
-                >
-                    <div className="absolute top-0 w-full h-1 left-0 bg-gradient-to-r from-rose-500 to-amber-500"></div>
-                     <div className="mb-8">
-                        <div className="w-20 h-20 bg-rose-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-rose-500/20">
-                             <FileText className="w-10 h-10 text-rose-500" />
-                        </div>
-                        <h3 className="text-3xl font-serif text-white mb-2">Analysis Complete</h3>
-                        <p className="text-gray-400 max-w-md mx-auto">We've generated a customized <strong>Revenue Recovery Roadmap</strong> based on your practice's specific data points.</p>
-                    </div>
+  // Contact View (First)
+  if (showContact) {
+      return (
+          <div className="w-full max-w-lg mx-auto">
+             <motion.div 
+                 initial={{ opacity: 0, x: 20 }}
+                 animate={{ opacity: 1, x: 0 }}
+                 className="space-y-6 text-center"
+             >
+                 <div className="mb-8">
+                      <div className="w-20 h-20 bg-rose-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-rose-500/20">
+                           <Calculator className="w-10 h-10 text-rose-500" />
+                      </div>
+                      <h3 className="text-3xl font-serif text-white mb-2">Revenue Recovery Audit</h3>
+                      <p className="text-gray-400">Discover how much revenue your practice is leaking annually.</p>
+                 </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="space-y-2 text-left">
-                            <Label className="text-gray-300 ml-1">Where should we send your report?</Label>
-                            <Input 
-                                type="email" 
-                                placeholder="Enter your best email address" 
-                                value={formData.email}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, email: e.target.value})}
-                                required
-                                className="bg-black/30 border-white/10 text-white h-14 text-lg focus-visible:ring-rose-500 w-full"
-                            />
-                        </div>
-                        
-                        <Button 
-                            type="submit" 
-                            disabled={loading}
-                            className="bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white rounded-full px-10 py-6 h-auto text-lg w-full shadow-[0_0_20px_rgba(225,29,72,0.3)] transition-all transform hover:scale-[1.02]"
-                        >
-                            {loading ? 'Sending Report...' : 'Unlock My Recovery Roadmap'}
-                        </Button>
-                        <p className="text-xs text-gray-500 flex items-center justify-center gap-1">
-                            <Lock className="w-3 h-3" /> Secure & Confidential.
-                        </p>
-                    </form>
-                </motion.div>
-            </div>
-       )
+                 <form onSubmit={handleContactSubmit} className="space-y-4 text-left">
+                     <div className="space-y-2">
+                         <Label>Practice / Contact Name</Label>
+                         <Input 
+                             value={formData.name}
+                             onChange={(e) => setFormData({...formData, name: e.target.value})}
+                             placeholder="Dr. Smith / Luxe Med Spa"
+                             className="bg-white/5 border-white/10"
+                             required
+                         />
+                     </div>
+                     <div className="space-y-2">
+                         <Label>Email Address</Label>
+                         <Input 
+                             type="email"
+                             value={formData.email}
+                             onChange={(e) => setFormData({...formData, email: e.target.value})}
+                             placeholder="admin@luxemedspa.com"
+                             className="bg-white/5 border-white/10"
+                             required
+                         />
+                     </div>
+                     <Button type="submit" className="w-full bg-rose-600 hover:bg-rose-500 text-lg py-6 mt-4">
+                         Start Free Audit <ArrowRight className="w-4 h-4 ml-2" />
+                     </Button>
+                 </form>
+             </motion.div>
+          </div>
+      )
   }
 
   // Question Flow
